@@ -62,3 +62,35 @@ exports.getAllPost=(req,res)=> {
 };
 
 
+exports.updatePost = (req, res) => {
+
+
+    if (req.body.name) {
+        Post.findOne({
+            where: {
+                id: req.body.id
+            }
+        })
+            .then(post => {
+                    if (post) {
+
+                        // update Post to Database
+
+                        post.update({
+                            name: req.body.name,
+                            description: req.body.description,
+                            phone: req.body.phone,
+                            content: req.body.content,
+                        })
+                        return res.status(200).send({message: "Post updated successfully! "});
+                    }
+                    else {
+
+                        return res.status(404).send({message: "This Post not exist "});
+                    }
+
+                }
+            )
+
+    }
+};

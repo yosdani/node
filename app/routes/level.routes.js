@@ -18,5 +18,13 @@ module.exports = function(app) {
 
         ]
     );
+    app.post(
+        "/api/updateLevel",
+        [authJwt.verifyToken,authJwt.isAdmin],
+        [
+            controller.updateLevel
+
+        ]
+    );
 
 };

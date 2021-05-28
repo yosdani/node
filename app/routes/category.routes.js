@@ -25,4 +25,15 @@ module.exports = function(app) {
 
         ]
     );
+
+    app.delete(
+        "/api/deleteCategory/:id",
+        [authJwt.verifyToken,authJwt.isAdmin],
+        [
+            controller.deleteCategory
+
+        ]
+    );
+
+
 };

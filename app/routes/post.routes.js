@@ -11,12 +11,20 @@ module.exports = function(app) {
     });
 
     app.post(
-        // [authJwt.verifyToken],
         "/api/createPost",
+        [authJwt.verifyToken],
 
             controller.createPost
 
 
+    );
+    app.post(
+        "/api/updatePost",
+        [authJwt.verifyToken],
+        [
+            controller.updatePost
+
+        ]
     );
 
 };
