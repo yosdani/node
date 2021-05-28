@@ -5,9 +5,11 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-    // origin: "http://localhost:8081"
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': true
+
+    //    origin: "http://localhost:8081"
+    'Access-control-Allow-Origin':'*',
+    'Access-control-Allow-Credentials':true
+
 };
 
 app.use(cors(corsOptions));

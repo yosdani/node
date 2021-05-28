@@ -11,12 +11,18 @@ module.exports = function(app) {
     });
 
     app.post(
-        // [authJwt.verifyToken,authJwt.isAdmin],
         "/api/createCategory",
+         [authJwt.verifyToken,authJwt.isAdmin],
+
+       
+    );
+
+    app.post(
+        "/api/updateCategory",
+        [authJwt.verifyToken,authJwt.isAdmin],
         [
-            controller.createCategory
+            controller.updateCategory
 
         ]
     );
-
 };
