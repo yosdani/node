@@ -14,11 +14,9 @@ module.exports = function(app) {
         "/api/createCategory",
          [authJwt.verifyToken,authJwt.isAdmin],
 
-        [
-            controller.createCategory
-
-        ]
+       
     );
+
     app.post(
         "/api/updateCategory",
         [authJwt.verifyToken,authJwt.isAdmin],
@@ -27,5 +25,4 @@ module.exports = function(app) {
 
         ]
     );
-
 };
