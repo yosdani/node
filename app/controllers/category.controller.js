@@ -90,3 +90,33 @@ exports.updateCategory = (req, res) => {
 
     }
 };
+
+exports.deleteCategory = (req, res) => {
+
+
+    if (req.params.id) {
+        Category.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(category => {
+                    if (category) {
+
+                        // update Category to Database
+
+                        category.destroy({
+
+                        })
+                        return res.status(200).send({message: "category deleted successfully! "});
+                    }
+                    else {
+
+                        return res.status(404).send({message: "This category not exist "});
+                    }
+
+                }
+            )
+
+ }
+ };
