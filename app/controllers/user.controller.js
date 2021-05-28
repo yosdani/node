@@ -102,3 +102,34 @@ exports.updateUser = (req, res) => {
 
     }
 };
+
+                    return res.status(200).send({name:user.name});
+                }
+
+            }
+        )
+
+
+};
+
+exports.getAllUser=(req,res)=> {
+
+    User.findAll({
+
+    })
+        .then(user => {
+                if (!user) {
+                    return res.status(404).send({message: "User Not found."});
+                }
+                else {
+
+                    return res.status(200).send({user});
+                }
+
+            }
+        )
+
+
+};
+
+
