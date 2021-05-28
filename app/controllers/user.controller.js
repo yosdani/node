@@ -70,3 +70,35 @@ exports.getAllUser=(req,res)=> {
 
 };
 
+exports.updateUser = (req, res) => {
+
+
+    if (req.body.name) {
+        User.findOne({
+            where: {
+                id: req.body.id
+            }
+        })
+            .then(user => {
+                    if (user) {
+
+                        // update user to Database
+
+                            user.update({
+                                username: req.body.username,
+                                name: req.body.name,
+                                isTcp: req.body.isTcp,
+                                ocupation: req.body.ocupation,
+                        })
+                        return res.status(200).send({message: "User updated successfully! "});
+                    }
+                    else {
+
+                        return res.status(404).send({message: "This User not exist "});
+                    }
+
+                }
+            )
+
+    }
+};

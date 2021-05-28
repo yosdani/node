@@ -11,10 +11,19 @@ module.exports = function(app) {
     });
 
     app.post(
-        // [authJwt.verifyToken,authJwt.isAdmin],
         "/api/createCategory",
+         [authJwt.verifyToken,authJwt.isAdmin],
+
         [
             controller.createCategory
+
+        ]
+    );
+    app.post(
+        "/api/updateCategory",
+        [authJwt.verifyToken,authJwt.isAdmin],
+        [
+            controller.updateCategory
 
         ]
     );

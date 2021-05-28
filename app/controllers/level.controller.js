@@ -59,3 +59,34 @@ exports.getAllLevel=(req,res)=> {
 };
 
 
+exports.updateLevel = (req, res) => {
+
+
+    if (req.body.name) {
+        Level.findOne({
+            where: {
+                id: req.body.id
+            }
+        })
+            .then(level => {
+                    if (level) {
+
+                        // update Category to Database
+
+                        level.update({
+                            name: req.body.name,
+                            description: req.body.description,
+                            active: req.body.active,
+                        })
+                        return res.status(200).send({message: "Level updated successfully! "});
+                    }
+                    else {
+
+                        return res.status(404).send({message: "This level not exist "});
+                    }
+
+                }
+            )
+
+    }
+};

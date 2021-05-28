@@ -59,3 +59,34 @@ exports.getAllCategory=(req,res)=> {
 };
 
 
+exports.updateCategory = (req, res) => {
+
+
+    if (req.body.name) {
+        Category.findOne({
+            where: {
+                id: req.body.id
+            }
+        })
+            .then(category => {
+                    if (category) {
+
+                        // update Category to Database
+
+                      category.update({
+                          name: req.body.name,
+                          description: req.body.description,
+                          active: req.body.active,
+                      })
+                        return res.status(200).send({message: "category updated successfully! "});
+                    }
+                    else {
+
+                        return res.status(404).send({message: "This category not exist "});
+                    }
+
+                }
+            )
+
+    }
+};
