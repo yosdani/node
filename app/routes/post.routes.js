@@ -27,4 +27,14 @@ module.exports = function(app) {
         ]
     );
 
+    app.delete(
+        "/api/deletePost/:id",
+        [authJwt.verifyToken],
+        [
+            controller.deletePost
+
+        ]
+    );
+
+
 };

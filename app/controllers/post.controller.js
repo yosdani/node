@@ -94,3 +94,33 @@ exports.updatePost = (req, res) => {
 
     }
 };
+
+exports.deletePost = (req, res) => {
+
+
+    if (req.params.id) {
+        Post.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(post => {
+                    if (post) {
+
+                        // update Category to Database
+
+                        post.destroy({
+
+                        })
+                        return res.status(200).send({message: "post deleted successfully! "});
+                    }
+                    else {
+
+                        return res.status(404).send({message: "This post not exist "});
+                    }
+
+                }
+            )
+
+    }
+};
