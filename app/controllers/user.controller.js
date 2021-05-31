@@ -73,7 +73,7 @@ exports.getAllUser=(req,res)=> {
 exports.updateUser = (req, res) => {
 
 
-    if (req.body.name) {
+    if (req.body) {
         User.findOne({
             where: {
                 id: req.body.id
@@ -103,14 +103,14 @@ exports.updateUser = (req, res) => {
     }
 };
 
-                    return res.status(200).send({name:user.name});
+/*                    return res.status(200).send({name:user.name});
                 }
 
             }
         )
 
 
-};
+};*/
 
 exports.getAllUser=(req,res)=> {
 
