@@ -40,6 +40,11 @@ module.exports = function(app) {
         [authJwt.verifyToken,authJwt.isAdmin],
         controller.getAllUser
     );
+    app.get(
+        "/api/members",
+        [authJwt.verifyToken,authJwt.isAdmin],
+        controller.getMembers
+    );
     app.post(
         "/api/updateUser",
 
