@@ -77,7 +77,7 @@ exports.getMembers = (req, res) => {
                     return res.status(404).send({message: "Members Not found."});
                 } else {
 
-                    return res.status(200).send({user});
+                    return res.status(200).send({members: user});
                 }
 
             }
