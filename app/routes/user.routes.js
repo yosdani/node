@@ -42,7 +42,7 @@ module.exports = function(app) {
     );
     app.get(
         "/api/members",
-        [authJwt.verifyToken,authJwt.isAdmin],
+        [authJwt.verifyToken],
         controller.getMembers
     );
     app.post(
@@ -54,5 +54,4 @@ module.exports = function(app) {
 
 
     );
-   
 };
