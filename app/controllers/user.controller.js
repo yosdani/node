@@ -127,21 +127,18 @@ exports.updateUser = (req, res) => {
 
 };*/
 
-exports.getAllUser = (req, res) => {
-
+exports.getUsers = (req, res) => {
     User.findAll({})
-        .then(user => {
-                if (!user) {
-                    return res.status(404).send({message: "User Not found."});
+        .then(users => {
+                if (!users) {
+                    return res.status(404).send({message: "Users not found."});
                 } else {
 
-                    return res.status(200).send({user});
+                    return res.status(200).send({users});
                 }
 
             }
         )
-
-
 };
 
 
