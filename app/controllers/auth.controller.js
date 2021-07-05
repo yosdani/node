@@ -2,6 +2,7 @@ const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
+const fs = require('fs');
 
 const Op = db.Sequelize.Op;
 
@@ -10,7 +11,15 @@ var bcrypt = require("bcrypt");
 
 exports.signup = (req, res) => {
     // Save User to Database
-    if (req.body.name) {
+    let image=req.body.avatar;
+    var base64Data = image.data.replace(/^data:image\/jpeg;base64,/, "");
+    fs.writeFile('avatar.jpg', base64Data, 'base64', function(err) {
+        console.log(err);
+    });
+
+
+
+        if (req.body.name) {
         User.findOne({
             where: {
                 name: req.body.name
@@ -24,7 +33,7 @@ exports.signup = (req, res) => {
                         name: req.body.name,
                         email: req.body.email,
                         isTcp: req.body.isTcp,
-                        avatar: req.body.avatar,
+                        avatar: image.title,
                         ocupation: req.body.ocupation,
                         password: bcrypt.hashSync(req.body.password, 8)
                     })
