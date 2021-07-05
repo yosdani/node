@@ -103,29 +103,40 @@ exports.updateUser = (req, res) => {
                         user.update({
                             username: req.body.username,
                             name: req.body.name,
-                            isTcp: req.body.isTcp,
+                            avatar: req.body.avatar,
                             ocupation: req.body.ocupation,
                         })
-                        return res.status(200).send({message: "User updated successfully! "});
+                        return res.status(200).send(user);
                     } else {
-
                         return res.status(404).send({message: "This User not exist "});
                     }
 
                 }
             )
-
     }
 };
 
-/*                    return res.status(200).send({name:user.name});
+exports.promoteTcp = (req, res) => {
+    if (req.body) {
+        User.findOne({
+            where: {
+                id: req.body.id
+            }
+        })
+        .then(user => {
+                if (user) {
+                    user.update({
+                        isTcp: req.body.isTcp,
+                    })
+                    return res.status(200).send(user);
+                } else {
+                    return res.status(404).send({message: "This User not exist "});
                 }
 
             }
         )
-
-
-};*/
+    }
+};
 
 exports.getUsers = (req, res) => {
     User.findAll({})
