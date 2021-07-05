@@ -2,6 +2,7 @@ const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
+var bcrypt = require("bcrypt");
 
 
 const Op = db.Sequelize.Op;
@@ -152,4 +153,30 @@ exports.getUsers = (req, res) => {
         )
 };
 
+exports.changePassword = (req, res) => {
+
+
+    if (req.body) {
+        User.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+            .then(user => {
+                    if (user) {
+
+                        // update user to Database
+
+                        user.update({
+                          password: bcrypt.hashSync(req.body.password, 8)
+                        })
+                        return res.status(200).send(user);
+                    } else {
+                        return res.status(404).send({message: "This User not exist "});
+                    }
+
+                }
+            )
+    }
+};
 
