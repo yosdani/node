@@ -1,8 +1,8 @@
-const { authJwt } = require("../middleware");
+const {authJwt} = require("../middleware");
 const controller = require("../controllers/user.controller");
 
-module.exports = function(app) {
-    app.use(function(req, res, next) {
+module.exports = function (app) {
+    app.use(function (req, res, next) {
         res.header(
             // "Access-Control-Allow-Headers",
             // "x-access-token, Origin, Content-Type, Accept"
@@ -19,7 +19,7 @@ module.exports = function(app) {
     );
     app.get(
         "/api/showUser",
-        [authJwt.verifyToken,authJwt.isAdmin],
+        [authJwt.verifyToken, authJwt.isAdmin],
         controller.showUser
     );
     app.get(
@@ -32,13 +32,16 @@ module.exports = function(app) {
         "/api/test/admin",
         [authJwt.verifyToken, authJwt.isAdmin],
         controller.adminBoard
-
-
+    );
+    app.post(
+        "/api/promote-tcp",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.promoteTcp
     );
     app.get(
         "/api/users",
-        [authJwt.verifyToken,authJwt.isAdmin],
-        controller.getAllUser
+        [authJwt.verifyToken],
+        controller.getUsers
     );
     app.get(
         "/api/members",
@@ -47,12 +50,7 @@ module.exports = function(app) {
     );
     app.post(
         "/api/updateUser",
-
-        [authJwt.verifyToken,authJwt.isAdmin],
-
-            controller.updateUser
-
-
+        [authJwt.verifyToken],
+        controller.updateUser
     );
-
 };
