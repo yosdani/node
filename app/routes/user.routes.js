@@ -22,22 +22,7 @@ module.exports = function (app) {
         [authJwt.verifyToken, authJwt.isAdmin],
         controller.showUser
     );
-    app.get(
-        "/api/test/mod",
-        [authJwt.verifyToken, authJwt.isModerator],
-        controller.moderatorBoard
-    );
 
-    app.get(
-        "/api/test/admin",
-        [authJwt.verifyToken, authJwt.isAdmin],
-        controller.adminBoard
-    );
-    app.post(
-        "/api/promote-tcp",
-        [authJwt.verifyToken, authJwt.isAdmin],
-        controller.promoteTcp
-    );
     app.get(
         "/api/users",
         [authJwt.verifyToken],
